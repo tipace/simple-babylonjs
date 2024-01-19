@@ -1,3 +1,4 @@
+<!-- https://playground.babylonjs.com/#SH5DVI#1 -->
 <template>
   <canvas id="xinyan" />
 </template>
@@ -29,10 +30,16 @@ function render() {
     engine.resize();
   });
 }
-
+/**
+ * 创建场景
+ * @param {BABYLON.Engine} engine - 渲染引擎
+ * @param {HTMLElement} canvas - 渲染画布
+ * @returns {BABYLON.Scene} - 创建的场景对象
+ */
 const createScene = (engine, canvas) => {
   const scene = new BABYLON.Scene(engine);
 
+  // 创建相机
   var Camera = new BABYLON.ArcRotateCamera(
     'Camera',
     -10,
@@ -47,8 +54,8 @@ const createScene = (engine, canvas) => {
   Camera.attachControl(canvas, true);
   Camera.wheelPrecision = 20;
   Camera.minZ = 0.1;
-  // scene.debugLayer.show({ showExplorer: true });//????inspector????
 
+  // 创建灯光
   var light = new BABYLON.PointLight(
     'light',
     new BABYLON.Vector3(3, 20, 10),
@@ -59,52 +66,57 @@ const createScene = (engine, canvas) => {
     new BABYLON.Vector3(3, 20, -10),
     scene
   );
+
+  // 从指定路径加载glb模型文件
   BABYLON.SceneLoader.Append(
     'https://smashelbow.github.io/xinyan/',
     'xinyanBabylon.gltf',
     scene,
     function (scene) {
-      light.intensity = 1; //????
+      light.intensity = 1; // 设置灯光强度
       light2.intensity = 1;
       light.shadowMinZ = 0.1;
       light.shadowMaxZ = 1200;
       light2.shadowMinZ = 0.1;
       light2.shadowMaxZ = 1200;
 
+      // 获取模型和模型的线
       var xinyan = scene.getMeshByName('xinyan');
       var xinyanLine: any = scene.getMeshByName('xinyanLine');
+
+      // 设置模型线的折射率和金属度
       xinyanLine.material.indexOfRefraction = 0;
       xinyanLine.material.metallicF0Factor = 0;
 
+      // 从snippet异步解析NodeMaterial
       BABYLON.NodeMaterial.ParseFromSnippetAsync('#4AWEWY#63', scene).then(
         (mat) => {
-          xinyan.material = mat;
+          xinyan.material = mat; // 将解析得到的材质赋值给xinyan.material
         }
       );
 
+      // 创建阴影生成器
       var shadowGenerator = new BABYLON.ShadowGenerator(2048, light);
-      shadowGenerator.getShadowMap().renderList.push(xinyan);
-      shadowGenerator.setDarkness(0);
-      shadowGenerator.filter = BABYLON.ShadowGenerator.FILTER_PCSS; //?????????,????
-      shadowGenerator.usePoissonSampling = true;
-      shadowGenerator.useContactHardeningShadow = true;
-      shadowGenerator.usePercentageCloserFiltering = true; //?????????,????
-      shadowGenerator.bias = 0.0001;
-
-      shadowGenerator.blurBoxOffset = 0.01;
+      shadowGenerator.getShadowMap().renderList.push(xinyan); // 将xinyan添加到阴影渲染列表中
+      shadowGenerator.setDarkness(0); // 设置阴影昏暗度为0
+      shadowGenerator.filter = BABYLON.ShadowGenerator.FILTER_PCSS; // 使用PCSS阴影过滤器
+      shadowGenerator.usePoissonSampling = true; // 使用Poisson采样
+      shadowGenerator.useContactHardeningShadow = true; // 使用接触硬化阴影
+      shadowGenerator.usePercentageCloserFiltering = true; // 使用百分比更近过滤
+      shadowGenerator.bias = 0.0001; // 设置偏置
+      shadowGenerator.blurBoxOffset = 0.01; // 设置模糊框偏移
 
       var shadowGenerator2 = new BABYLON.ShadowGenerator(2048, light2);
-      shadowGenerator2.getShadowMap().renderList.push(xinyan);
-      shadowGenerator2.setDarkness(0);
-      shadowGenerator2.filter = BABYLON.ShadowGenerator.FILTER_PCSS; //?????????,????
-      shadowGenerator2.usePoissonSampling = true;
-      shadowGenerator2.useContactHardeningShadow = true;
-      shadowGenerator2.usePercentageCloserFiltering = true; //?????????,????
-      shadowGenerator2.bias = 0.0001;
+      shadowGenerator2.getShadowMap().renderList.push(xinyan); // 将xinyan添加到阴影渲染列表中
+      shadowGenerator2.setDarkness(0); // 设置阴影昏暗度为0
+      shadowGenerator2.filter = BABYLON.ShadowGenerator.FILTER_PCSS; // 使用PCSS阴影过滤器
+      shadowGenerator2.usePoissonSampling = true; // 使用Poisson采样
+      shadowGenerator2.useContactHardeningShadow = true; // 使用接触硬化阴影
+      shadowGenerator2.usePercentageCloserFiltering = true; // 使用百分比更近过滤
+      shadowGenerator2.bias = 0.0001; // 设置偏置
+      shadowGenerator2.blurBoxOffset = 0.01; // 设置模糊框偏移
 
-      shadowGenerator2.blurBoxOffset = 0.01;
-
-      xinyan.receiveShadows = true;
+      xinyan.receiveShadows = true; // 接收阴影
     }
   );
 
