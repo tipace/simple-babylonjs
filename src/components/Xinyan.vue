@@ -7,6 +7,7 @@
 import { onMounted } from 'vue';
 import * as BABYLON from '@babylonjs/core/Legacy/legacy';
 import '@babylonjs/loaders/glTF';
+import { Inspector } from '@babylonjs/inspector';
 
 onMounted(() => {
   render();
@@ -25,7 +26,6 @@ function render() {
     scene.render();
   });
 
-  // Resize
   window.addEventListener('resize', function () {
     engine.resize();
   });
@@ -119,6 +119,11 @@ const createScene = (engine, canvas) => {
       xinyan.receiveShadows = true; // 接收阴影
     }
   );
+
+  // Show inspector.
+  Inspector.Show(scene, {
+    embedMode: true,
+  });
 
   return scene;
 };

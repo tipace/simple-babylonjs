@@ -1,17 +1,19 @@
 <script setup>
 import { ref } from 'vue';
 
+import Cube from './components/Cube.vue';
 import Xbot from './components/Xbot.vue';
 import Xinyan from './components/Xinyan.vue';
 
 const compMap = {
+  Cube,
   Xbot,
   Xinyan,
 };
 
 const nameList = Reflect.ownKeys(compMap);
 
-const name = ref('Xinyan');
+const name = ref('Cube');
 </script>
 
 <template>
