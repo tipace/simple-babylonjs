@@ -1,5 +1,5 @@
 <template>
-  <div class="button-wrap">
+  <!-- <div class="button-wrap">
     <div class="title">Base Action</div>
     <button
       v-for="act in baseActions"
@@ -17,7 +17,7 @@
     >
       {{ act }}
     </button>
-  </div>
+  </div> -->
   <canvas id="renderCanvas" />
 </template>
 
@@ -25,6 +25,7 @@
 import { onMounted, ref } from 'vue';
 import * as BABYLON from '@babylonjs/core/Legacy/legacy';
 import '@babylonjs/loaders/glTF';
+import { Inspector } from '@babylonjs/inspector';
 
 const actionList = ref<string[]>([]);
 
@@ -118,6 +119,11 @@ function load() {
     }
   );
 
+  // Show inspector.
+  Inspector.Show(scene, {
+    embedMode: true,
+  });
+
   // 开始渲染循环
   engine.runRenderLoop(() => {
     scene.render();
@@ -146,8 +152,8 @@ onMounted(() => {
 <style scoped>
 .button-wrap {
   position: fixed;
-  top: 50px;
-  right: 50px;
+  top: 60px;
+  left: 20px;
 
   .title {
     color: #333;
