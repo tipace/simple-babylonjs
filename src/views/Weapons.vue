@@ -17,7 +17,7 @@ const can = ref();
 var easingFunction = new BABYLON.SineEase();
 easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
 
-let scene;
+let scene: BABYLON.Scene;
 /**
  *
  * @param {*} parameter is the target parameter for animation
@@ -162,32 +162,42 @@ function createScene(engine, canvas) {
   var axeMagicActive = false;
 
   // create node materials
+
+  // 1 创建匕首柄的节点材质
   var daggerHandleMat = new BABYLON.NodeMaterial('daggerHandleMat', scene, {
     emitComments: false,
   });
+  // 2 创建匕首宝石的节点材质
   var daggerGemMat = new BABYLON.NodeMaterial('daggerGemMat', scene, {
     emitComments: false,
   });
+  // 3 创建匕首刀刃的节点材质
   var daggerBladeMat = new BABYLON.NodeMaterial('daggerBladeMat', scene, {
     emitComments: false,
   });
 
+  // 4 创建剑柄的节点材质
   var swordHiltMat = new BABYLON.NodeMaterial('swordHiltMat', scene, {
     emitComments: false,
   });
+  // 5 创建剑把手宝石的节点材质
   var swordHandleGemMat = new BABYLON.NodeMaterial('swordHandleGemMat', scene, {
     emitComments: false,
   });
+  // 6 创建剑护手宝石的节点材质
   var swordGuardGemsMat = new BABYLON.NodeMaterial('swordGuardGemsMat', scene, {
     emitComments: false,
   });
+  // 7 创建剑刀刃的节点材质
   var swordBladeMat = new BABYLON.NodeMaterial('swordBladeMat', scene, {
     emitComments: false,
   });
 
+  // 8 创建斧头的节点材质
   var axeMat = new BABYLON.NodeMaterial('axeMat', scene, {
     emitComments: false,
   });
+  // 9 创建冰霜斧头的节点材质
   var axeIceMat = new BABYLON.NodeMaterial('axeIceMat', scene, {
     emitComments: false,
   });
@@ -195,62 +205,62 @@ function createScene(engine, canvas) {
   // load assets
   promises.push(
     BABYLON.SceneLoader.AppendAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/meshes/moltenDagger.glb'
+      'https://models.babylonjs.com/Demos/weaponsDemo/meshes/moltenDagger.glb' // 指定熔化匕首的模型文件路径
     )
   );
   promises.push(
     BABYLON.SceneLoader.AppendAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/meshes/runeSword.glb'
+      'https://models.babylonjs.com/Demos/weaponsDemo/meshes/runeSword.glb' // 指定符文剑的模型文件路径
     )
   );
   promises.push(
     BABYLON.SceneLoader.AppendAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/meshes/frostAxe.glb'
+      'https://models.babylonjs.com/Demos/weaponsDemo/meshes/frostAxe.glb' // 指定霜之斧的模型文件路径
     )
   );
   promises.push(
     daggerHandleMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/daggerHandleMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/daggerHandleMat.json' // 指定匕首柄的材质文件路径
     )
   );
   promises.push(
     daggerBladeMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/daggerBladeMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/daggerBladeMat.json' // 指定匕首刀刃的材质文件路径
     )
   );
   promises.push(
     daggerGemMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/daggerGemMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/daggerGemMat.json' // 指定匕首宝石的材质文件路径
     )
   );
   promises.push(
     swordBladeMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordBladeMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordBladeMat.json' // 指定剑的刀刃的材质文件路径
     )
   );
   promises.push(
     swordGuardGemsMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordGuardGemsMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordGuardGemsMat.json' // 指定剑的宝石护手的材质文件路径
     )
   );
   promises.push(
     swordHandleGemMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordHandleGemMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordHandleGemMat.json' // 指定剑的剑柄宝石的材质文件路径
     )
   );
   promises.push(
     swordHiltMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordHiltMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/swordHiltMat.json' // 指定剑的剑柄的材质文件路径
     )
   );
   promises.push(
     axeMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/axeMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/axeMat.json' // 指定斧的材质文件路径
     )
   );
   promises.push(
     axeIceMat.loadAsync(
-      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/axeIceMat.json'
+      'https://models.babylonjs.com/Demos/weaponsDemo/shaders/axeIceMat.json' // 12 指定霜之斧的冰霜材质文件路径
     )
   );
 
@@ -709,19 +719,29 @@ function createScene(engine, canvas) {
     };
 
     // particle noise
+    // 创建一个NoiseProceduralTexture实例，用于生成噪声纹理
     var noiseTexture = new BABYLON.NoiseProceduralTexture('perlin', 256, scene);
+    // 设置噪声纹理的动画速度因子
     noiseTexture.animationSpeedFactor = 5;
+    // 设置噪声纹理的持续性
     noiseTexture.persistence = 2;
+    // 设置噪声纹理的亮度
     noiseTexture.brightness = 0.5;
+    // 设置噪声纹理的谐波数
     noiseTexture.octaves = 6;
 
     // dagger blade mesh emitter
+    // 创建一个基于daggerBlade的网格粒子发射器
     var daggerMeshEmitter = new BABYLON.MeshParticleEmitter(daggerBlade);
+    // 是否使用网格法线作为方向
     daggerMeshEmitter.useMeshNormalsForDirection = false;
+    // 方向1
     daggerMeshEmitter.direction1 = new BABYLON.Vector3(1, 0, 0);
+    // 方向2
     daggerMeshEmitter.direction2 = new BABYLON.Vector3(1, 0.2, 0);
 
     // dagger embers particle system
+
     var daggerEmbers = new BABYLON.ParticleSystem('daggerEmbers', 1000, scene);
     daggerEmbers.particleTexture = new BABYLON.Texture(
       'https://models.babylonjs.com/Demos/weaponsDemo/textures/sparks.png',
@@ -732,6 +752,13 @@ function createScene(engine, canvas) {
     daggerEmbers.particleEmitterType = daggerMeshEmitter;
     daggerEmbers.emitter = daggerBlade;
     daggerEmbers.minLifeTime = 4.0;
+    // 创建名为daggerEmbers的粒子系统
+    var daggerEmbers = new BABYLON.ParticleSystem('daggerEmbers', 1000, scene);
+    // 设置粒子系统的纹理为sparks.png
+    daggerEmbers.particleTexture = new BABYLON.Texture(
+      'https://models.babylonjs.com/Demos/weaponsDemo/textures/sparks.png',
+      scene
+    );
     daggerEmbers.maxLifeTime = 4.0;
     daggerEmbers.emitRate = 30;
     daggerEmbers.addColorGradient(
@@ -1562,11 +1589,15 @@ function createScene(engine, canvas) {
 
     var mouseDown = false;
     scene.onPointerObservable.add((evt) => {
+      // 监听指针事件的回调函数
+
       if (cameraControl) {
+        // 如果相机已经有控制对象，则直接返回
         return;
       }
 
       if (evt.type === BABYLON.PointerEventTypes.POINTERDOWN) {
+        // 如果是鼠标按下事件
         mouseDown = true;
         if (
           BABYLON.Vector3.Dot(
@@ -1574,18 +1605,24 @@ function createScene(engine, canvas) {
             camera.getWorldMatrix().getRotationMatrix().getRow(1)
           ) >= 0
         ) {
+          // 计算焦点网格的上方向量与相机世界矩阵的旋转矩阵第二行的点积
+          // 如果点积大于等于0，则设置x旋转符号为-1
           xRotationSign = -1;
         } else {
+          // 如果点积小于0，则设置x旋转符号为1
           xRotationSign = 1;
         }
         return;
       }
+
       if (evt.type === BABYLON.PointerEventTypes.POINTERUP) {
+        // 如果是鼠标抬起事件
         mouseDown = false;
         return;
       }
 
       if (!mouseDown || evt.type !== BABYLON.PointerEventTypes.POINTERMOVE) {
+        // 如果不是鼠标移动事件或者鼠标未按下，则直接返回
         return;
       }
 
@@ -1595,15 +1632,19 @@ function createScene(engine, canvas) {
         evt.event.webkitMovementX ||
         evt.event.msMovementX ||
         0;
+      // 获取鼠标在X轴上的偏移量
       var offsetY =
         evt.event.movementY ||
         evt.event.mozMovementY ||
         evt.event.webkitMovementY ||
         evt.event.msMovementY ||
         0;
+      // 获取鼠标在Y轴上的偏移量
 
       inertialAlpha += xRotationSign * offsetX * angularSpeed;
+      // 计算随速度变化的X轴旋转角度
       inertialBeta -= offsetY * angularSpeed;
+      // 计算随速度变化的Y轴旋转角度
     });
 
     // add listener for key press
