@@ -9,16 +9,15 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
 import { routeList } from '../router';
 
-const router = useRouter();
-
-const name = ref();
+const name = ref(window.location.pathname.split('/')[1]);
 
 function changeMenu(e) {
   name.value = e.target.value;
-  router.push('/' + name.value);
+  // @babylonjs/inspector 会破坏dom结构，使用vue-router跳转时可能出现vue内部的错误
+  // todo 临时方案改为重新加载页面
+  window.location.href = `/${name.value}`;
 }
 </script>
 
