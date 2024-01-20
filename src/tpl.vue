@@ -13,7 +13,7 @@ import { Inspector } from '@babylonjs/inspector';
 
 const can = ref();
 
-function createScene(engine, canvas) {}
+function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {}
 
 function render() {
   const canvas = can.value;
