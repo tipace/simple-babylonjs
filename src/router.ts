@@ -36,6 +36,11 @@ const routes: RouteRecordRaw[] = [
     name: 'PBRSubsurface',
     component: () => import('./views/PBRSubsurface.vue'),
   },
+  {
+    path: '/Yeti',
+    name: 'Yeti',
+    component: () => import('./views/Yeti.vue'),
+  },
 ];
 
 /** Vue Router */

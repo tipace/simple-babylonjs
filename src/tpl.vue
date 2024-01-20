@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <canvas ref="can" />
 </template>
