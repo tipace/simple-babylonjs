@@ -244,6 +244,7 @@ async function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
       'https://patrickryanms.github.io/BabylonJStextures/Demos/sodaBottle/assets/shaders/glassShader.json'
     );
     // 构建sodaMats.bottle材质
+    sodaMats.bottle.build(false);
 
     // 创建sodaMats.liquid材质
     sodaMats.liquid = new BABYLON.NodeMaterial('sodaMat', scene, {
