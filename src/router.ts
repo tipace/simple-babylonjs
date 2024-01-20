@@ -1,7 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  type Router,
+  type RouteRecordRaw,
+} from 'vue-router';
 
 /** Router Rules */
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/Xinyan',
@@ -29,7 +34,7 @@ const routes = [
 ];
 
 /** Vue Router */
-const router = createRouter({
+const router: Router = createRouter({
   history: createWebHistory(),
   routes,
 });

@@ -32,10 +32,10 @@ function render() {
 }
 
 class CustomNode extends BABYLON.TransformNode {
-  _mesh;
-  _color;
+  _mesh: BABYLON.Mesh;
+  _color!: BABYLON.Color3;
 
-  constructor(name, scene, color) {
+  constructor(name: string, scene: BABYLON.Scene, color: BABYLON.Color3) {
     super(name, scene);
 
     this._mesh = BABYLON.MeshBuilder.CreateBox('box', { size: 2 }, scene);
@@ -57,6 +57,7 @@ class CustomNode extends BABYLON.TransformNode {
 
   set color(value) {
     this._color = value;
+    // @ts-ignore
     this._mesh.material.diffuseColor = value;
   }
 
@@ -65,7 +66,7 @@ class CustomNode extends BABYLON.TransformNode {
   }
 }
 
-var createScene = function (engine, canvas) {
+var createScene = function (engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
   // This creates a basic Babylon Scene object (non-mesh)
   var scene = new BABYLON.Scene(engine);
 

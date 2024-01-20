@@ -36,11 +36,11 @@ function render() {
  * @param {HTMLElement} canvas - 渲染画布
  * @returns {BABYLON.Scene} - 创建的场景对象
  */
-const createScene = (engine, canvas) => {
+const createScene = (engine: BABYLON.Engine, canvas: HTMLCanvasElement) => {
   const scene = new BABYLON.Scene(engine);
 
   // 创建相机
-  var Camera = new BABYLON.ArcRotateCamera(
+  const Camera = new BABYLON.ArcRotateCamera(
     'Camera',
     -10,
     5,
@@ -56,12 +56,12 @@ const createScene = (engine, canvas) => {
   Camera.minZ = 0.1;
 
   // 创建灯光
-  var light = new BABYLON.PointLight(
+  const light = new BABYLON.PointLight(
     'light',
     new BABYLON.Vector3(3, 20, 10),
     scene
   );
-  var light2 = new BABYLON.PointLight(
+  const light2 = new BABYLON.PointLight(
     'light2',
     new BABYLON.Vector3(3, 20, -10),
     scene
@@ -75,14 +75,14 @@ const createScene = (engine, canvas) => {
     function (scene) {
       light.intensity = 1; // 设置灯光强度
       light2.intensity = 1;
-      light.shadowMinZ = 0.1;
-      light.shadowMaxZ = 1200;
-      light2.shadowMinZ = 0.1;
-      light2.shadowMaxZ = 1200;
+      light.shadowMinZ = 0.1; // 设置light的最小阴影深度为0.1
+      light.shadowMaxZ = 1200; // 设置light的最大阴影深度为1200
+      light2.shadowMinZ = 0.1; // 设置light2的最小阴影深度为0.1
+      light2.shadowMaxZ = 1200; // 设置light2的最大阴影深度为1200
 
       // 获取模型和模型的线
-      var xinyan = scene.getMeshByName('xinyan');
-      var xinyanLine: any = scene.getMeshByName('xinyanLine');
+      const xinyan = scene.getMeshByName('xinyan') as BABYLON.AbstractMesh;
+      const xinyanLine: any = scene.getMeshByName('xinyanLine');
 
       // 设置模型线的折射率和金属度
       xinyanLine.material.indexOfRefraction = 0;
@@ -96,7 +96,7 @@ const createScene = (engine, canvas) => {
       );
 
       // 创建阴影生成器
-      var shadowGenerator = new BABYLON.ShadowGenerator(2048, light);
+      const shadowGenerator: any = new BABYLON.ShadowGenerator(2048, light);
       shadowGenerator.getShadowMap().renderList.push(xinyan); // 将xinyan添加到阴影渲染列表中
       shadowGenerator.setDarkness(0); // 设置阴影昏暗度为0
       shadowGenerator.filter = BABYLON.ShadowGenerator.FILTER_PCSS; // 使用PCSS阴影过滤器
@@ -106,7 +106,7 @@ const createScene = (engine, canvas) => {
       shadowGenerator.bias = 0.0001; // 设置偏置
       shadowGenerator.blurBoxOffset = 0.01; // 设置模糊框偏移
 
-      var shadowGenerator2 = new BABYLON.ShadowGenerator(2048, light2);
+      const shadowGenerator2: any = new BABYLON.ShadowGenerator(2048, light2);
       shadowGenerator2.getShadowMap().renderList.push(xinyan); // 将xinyan添加到阴影渲染列表中
       shadowGenerator2.setDarkness(0); // 设置阴影昏暗度为0
       shadowGenerator2.filter = BABYLON.ShadowGenerator.FILTER_PCSS; // 使用PCSS阴影过滤器

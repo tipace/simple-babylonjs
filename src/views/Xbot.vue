@@ -29,9 +29,13 @@ import { Inspector } from '@babylonjs/inspector';
 
 const actionList = ref<string[]>([]);
 
+interface AnimGroupMap {
+  [key: string]: BABYLON.AnimationGroup;
+}
+
 const baseActions = ['none', 'idle', 'run', 'walk'];
 const additiveActions = ['sad_pose', 'sneak_pose', 'headShake', 'agree'];
-let agMap = {};
+let agMap: AnimGroupMap = {};
 /**
  * 加载函数
  */
@@ -106,7 +110,7 @@ function load() {
       // 获取所有动画组
       const allAGs: BABYLON.AnimationGroup[] = scene.animationGroups;
       // 创建动画对象映射
-      const agObjMap = {};
+      const agObjMap: AnimGroupMap = {};
       for (let i = 0; i < allAGs.length; i++) {
         allAGs[i].stop();
         console.log(allAGs[i].name + ',', allAGs[i]);
@@ -134,8 +138,8 @@ function load() {
     engine.resize();
   });
 }
-function changeBaseAction(act, loop = false) {
-  Reflect.ownKeys(agMap).forEach((key) => {
+function changeBaseAction(act: string, loop = false) {
+  Object.keys(agMap).forEach((key) => {
     if (key !== act) {
       agMap[key].stop();
     } else {
