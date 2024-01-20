@@ -1,3 +1,4 @@
+<!--  -->
 <template>
   <canvas ref="can" />
 </template>
@@ -7,6 +8,7 @@
 
 import { onMounted, ref } from 'vue';
 import * as BABYLON from '@babylonjs/core/Legacy/legacy';
+import '@babylonjs/loaders/glTF';
 import { Inspector } from '@babylonjs/inspector';
 
 const can = ref();
@@ -15,11 +17,7 @@ function createScene(engine, canvas) {}
 
 function render() {
   const canvas = can.value;
-  // canvas.width = window.innerWidth;
-  // canvas.height = window.innerHeight;
-
   const engine = new BABYLON.Engine(canvas, true);
-
   const scene = createScene(engine, canvas);
 
   // Show inspector.

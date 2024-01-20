@@ -31,6 +31,11 @@ const routes: RouteRecordRaw[] = [
     name: 'Weapons',
     component: () => import('./views/Weapons.vue'),
   },
+  {
+    path: '/PBRSubsurface',
+    name: 'PBRSubsurface',
+    component: () => import('./views/PBRSubsurface.vue'),
+  },
 ];
 
 /** Vue Router */
