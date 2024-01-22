@@ -33,8 +33,13 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
   );
   camera.attachControl(canvas, true);
 
+  // 设置相机的最小半径限制为2，这将限制用户可以缩小到的最小距离
   camera.lowerRadiusLimit = 2;
+
+  // 设置相机的最大半径限制为10，这将限制用户可以放大到的最大距离
   camera.upperRadiusLimit = 10;
+
+  // 设置滚轮变化百分比为0.01，这将影响用户滚动鼠标滚轮时相机的缩放速度
   camera.wheelDeltaPercentage = 0.01;
 
   const light = new BABYLON.HemisphericLight(
@@ -43,6 +48,7 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
     scene
   );
   light.intensity = 0.6;
+  // 设置光源的镜面反射颜色为黑色。这意味着光源不会在物体表面产生高光效果。
   light.specular = BABYLON.Color3.Black();
 
   const light2 = new BABYLON.DirectionalLight(
@@ -53,8 +59,13 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
   light2.position = new BABYLON.Vector3(0, 5, 5);
 
   // Shadows
+  // 创建一个新的阴影生成器，参数1024定义了阴影贴图的大小，light2是产生阴影的光源
   const shadowGenerator = new BABYLON.ShadowGenerator(1024, light2);
+
+  // 启用模糊指数阴影图，这将使阴影边缘更加柔和
   shadowGenerator.useBlurExponentialShadowMap = true;
+
+  // 设置模糊核大小为32，这将影响阴影的模糊程度
   shadowGenerator.blurKernel = 32;
 
   engine.displayLoadingUI();
@@ -81,42 +92,76 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
       }
 
       // ROBOT
+      // 创建一个新的AnimationPropertiesOverride对象，并将其赋值给骨架的animationPropertiesOverride属性
+      // AnimationPropertiesOverride对象用于覆盖骨架的动画属性
       skeleton.animationPropertiesOverride =
         new BABYLON.AnimationPropertiesOverride();
+
+      // 启用动画混合。当启用时，可以在不同的动画之间平滑过渡
       skeleton.animationPropertiesOverride.enableBlending = true;
+
+      // 设置动画混合的速度为0.05。这将影响从一种动画过渡到另一种动画的速度
       skeleton.animationPropertiesOverride.blendingSpeed = 0.05;
+
+      // 设置动画的循环模式为1。这意味着动画将在结束时从头开始
       skeleton.animationPropertiesOverride.loopMode = 1;
 
-      const idleRange = skeleton.getAnimationRange('YBot_Idle');
-      const walkRange = skeleton.getAnimationRange('YBot_Walk');
-      const runRange = skeleton.getAnimationRange('YBot_Run');
-      const leftRange = skeleton.getAnimationRange('YBot_LeftStrafeWalk');
-      const rightRange = skeleton.getAnimationRange('YBot_RightStrafeWalk');
-
+      // 获取骨架的各种动画范围
+      const idleRange = skeleton.getAnimationRange('YBot_Idle'); // 获取Idle动画范围
+      const walkRange = skeleton.getAnimationRange('YBot_Walk'); // 获取Walk动画范围
+      const runRange = skeleton.getAnimationRange('YBot_Run'); // 获取Run动画范围
+      const leftRange = skeleton.getAnimationRange('YBot_LeftStrafeWalk'); // 获取LeftStrafeWalk动画范围
+      const rightRange = skeleton.getAnimationRange('YBot_RightStrafeWalk'); // 获取RightStrafeWalk动画范围
       // IDLE
       if (idleRange)
         scene.beginAnimation(skeleton, idleRange.from, idleRange.to, true);
 
       // UI
+      // 创建一个全屏的UI纹理
       const advancedTexture =
         GUI.AdvancedDynamicTexture.CreateFullscreenUI('UI');
+
+      // 创建一个新的堆栈面板
       const uiPanel = new GUI.StackPanel();
+
+      // 设置面板的宽度为220px
       uiPanel.width = '220px';
+
+      // 设置面板的字体大小为14px
       uiPanel.fontSize = '14px';
+
+      // 设置面板的水平对齐方式为右对齐
       uiPanel.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+
+      // 设置面板的垂直对齐方式为居中对齐
       uiPanel.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+
+      // 将面板添加到全屏UI纹理中
       advancedTexture.addControl(uiPanel);
-      // ..
+
+      // 创建一个新的按钮，按钮的标签为"Play Idle"
       const button = GUI.Button.CreateSimpleButton('but1', 'Play Idle');
+
+      // 设置按钮的顶部内边距为10px
       button.paddingTop = '10px';
+
+      // 设置按钮的宽度为100px，高度为50px
       button.width = '100px';
       button.height = '50px';
+
+      // 设置按钮的文字颜色为白色
       button.color = 'white';
+
+      // 设置按钮的背景颜色为绿色
       button.background = 'green';
+
+      // 当按钮被按下时，如果存在Idle动画范围，则开始播放Idle动画
       button.onPointerDownObservable.add(() => {
         if (idleRange)
           scene.beginAnimation(skeleton, idleRange.from, idleRange.to, true);
       });
+
+      // 将按钮添加到面板中
       uiPanel.addControl(button);
       // ..
       let button1 = GUI.Button.CreateSimpleButton('but2', 'Play Walk');
@@ -167,15 +212,29 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
       });
       uiPanel.addControl(button1);
       // ..
+      // 创建一个新的按钮，按钮的标签为"Play Blend"
       button1 = GUI.Button.CreateSimpleButton('but6', 'Play Blend');
+
+      // 设置按钮的顶部内边距为10px
       button1.paddingTop = '10px';
+
+      // 设置按钮的宽度为100px，高度为50px
       button1.width = '100px';
       button1.height = '50px';
+
+      // 设置按钮的文字颜色为白色
       button1.color = 'white';
+
+      // 设置按钮的背景颜色为绿色
       button1.background = 'green';
+
+      // 当按钮被按下时，如果存在walkRange和leftRange动画范围，则开始播放混合动画
       button1.onPointerDownObservable.add(() => {
         if (walkRange && leftRange) {
+          // 停止当前的动画
           scene.stopAnimation(skeleton);
+
+          // 开始播放walk动画，权重为0.5
           const walkAnim = scene.beginWeightedAnimation(
             skeleton,
             walkRange.from,
@@ -183,6 +242,8 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
             0.5,
             true
           );
+
+          // 开始播放left动画，权重为0.5
           const leftAnim = scene.beginWeightedAnimation(
             skeleton,
             leftRange.from,
@@ -191,7 +252,7 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
             true
           );
 
-          // Note: Sync Speed Ratio With Master Walk Animation
+          // 将walk动画设置为主动画，其他动画将与其同步
           walkAnim.syncWith(null);
           leftAnim.syncWith(walkAnim);
         }
