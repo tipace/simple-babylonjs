@@ -41,6 +41,11 @@ const routes: RouteRecordRaw[] = [
     name: 'Yeti',
     component: () => import('./views/Yeti.vue'),
   },
+  {
+    path: '/Dummy3',
+    name: 'Dummy3',
+    component: () => import('./views/Dummy3.vue'),
+  },
 ];
 
 /** Vue Router */
