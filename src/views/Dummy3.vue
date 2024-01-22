@@ -19,8 +19,8 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
   engine.enableOfflineSupport = false;
 
   // This is really important to tell Babylon.js to use decomposeLerp and matrix interpolation
+  // 允许矩阵插值。当设置为true时，BABYLON.Animation将尝试对矩阵进行插值，这可以在某些情况下提供更平滑的动画效果。
   BABYLON.Animation.AllowMatricesInterpolation = true;
-
   const scene = new BABYLON.Scene(engine);
 
   const camera = new BABYLON.ArcRotateCamera(
@@ -78,15 +78,23 @@ function createScene(engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
     function (newMeshes, particleSystems, skeletons) {
       const skeleton = skeletons[0];
 
+      // 将场景中的第一个网格添加为阴影生成器的阴影投射者
       shadowGenerator.addShadowCaster(scene.meshes[0], true);
+
+      // 遍历新创建的网格数组，将每个网格的接收阴影属性设置为false，这意味着这些网格不会接收阴影
       for (let index = 0; index < newMeshes.length; index++) {
         newMeshes[index].receiveShadows = false;
       }
 
+      // 创建一个默认的环境，包括天空盒、地面和光照，并启用地面阴影
       const helper = scene.createDefaultEnvironment({
         enableGroundShadow: true,
       }) as BABYLON.EnvironmentHelper;
+
+      // 设置环境的主色为灰色
       helper.setMainColor(BABYLON.Color3.Gray());
+
+      // 如果环境中包含地面，将地面的y坐标增加0.01，这可以防止z-fighting现象
       if (helper.ground) {
         helper.ground.position.y += 0.01;
       }
