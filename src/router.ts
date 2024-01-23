@@ -96,7 +96,12 @@ const routes: RouteRecordRaw[] = [
     name: 'SpriteTree',
     component: () => import('./views/SpriteTree.vue'),
   },
-  // SpriteTree
+  {
+    path: '/Fountain',
+    name: 'Fountain',
+    component: () => import('./views/Fountain.vue'),
+  },
+  // Fountain
 ];
 
 /** Vue Router */
