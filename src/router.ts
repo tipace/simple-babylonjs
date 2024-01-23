@@ -101,7 +101,12 @@ const routes: RouteRecordRaw[] = [
     name: 'Fountain',
     component: () => import('./views/Fountain.vue'),
   },
-  // Fountain
+  {
+    path: '/ParticleSpray',
+    name: 'ParticleSpray',
+    component: () => import('./views/ParticleSpray.vue'),
+  },
+  // ParticleSpray
 ];
 
 /** Vue Router */
