@@ -16,4 +16,4 @@ json https://assets.babylonjs.com/generated/Assets.js
 
 ## references
 
-### [theFirstStep](https://doc.babylonjs.com/journey/theFirstStep）
+### [theFirstStep](https://doc.babylonjs.com/journey/theFirstStep)
