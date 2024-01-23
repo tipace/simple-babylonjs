@@ -56,6 +56,11 @@ const routes: RouteRecordRaw[] = [
     name: 'Axis',
     component: () => import('./views/Axis.vue'),
   },
+  {
+    path: '/Car',
+    name: 'Car',
+    component: () => import('./views/Car.vue'),
+  },
 ];
 
 /** Vue Router */
