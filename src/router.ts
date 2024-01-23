@@ -81,7 +81,12 @@ const routes: RouteRecordRaw[] = [
     name: 'BasicCollisions',
     component: () => import('./views/BasicCollisions.vue'),
   },
-  // BasicCollisions
+  {
+    path: '/DistantHills',
+    name: 'DistantHills',
+    component: () => import('./views/DistantHills.vue'),
+  },
+  // DistantHills
 ];
 
 /** Vue Router */

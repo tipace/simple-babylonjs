@@ -6,7 +6,7 @@ most of the demos are from the [BabylonJS demo website](https://www.babylonjs-pl
 
 ## Explanition
 
-most of the comments are written by TONGYI Lingma or git copilot
+most of the comments are written by **TONGYI Lingma** or **Github Copilot**
 
 ## Assets
 
@@ -14,6 +14,6 @@ doc https://github.com/BabylonJS/Assets
 
 json https://assets.babylonjs.com/generated/Assets.js
 
-## references
+## References
 
 ### [theFirstStep](https://doc.babylonjs.com/journey/theFirstStep)
