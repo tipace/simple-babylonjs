@@ -1,3 +1,4 @@
+<!-- https://playground.babylonjs.com/#KBS9I5#85 -->
 <template>
   <canvas ref="renderCanvas" />
 </template>

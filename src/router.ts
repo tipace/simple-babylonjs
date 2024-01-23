@@ -86,7 +86,12 @@ const routes: RouteRecordRaw[] = [
     name: 'DistantHills',
     component: () => import('./views/DistantHills.vue'),
   },
-  // DistantHills
+  {
+    path: '/SkyBox',
+    name: 'SkyBox',
+    component: () => import('./views/SkyBox.vue'),
+  },
+  // SkyBox
 ];
 
 /** Vue Router */
