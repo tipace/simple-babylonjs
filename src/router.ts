@@ -91,7 +91,12 @@ const routes: RouteRecordRaw[] = [
     name: 'SkyBox',
     component: () => import('./views/SkyBox.vue'),
   },
-  // SkyBox
+  {
+    path: '/SpriteTree',
+    name: 'SpriteTree',
+    component: () => import('./views/SpriteTree.vue'),
+  },
+  // SpriteTree
 ];
 
 /** Vue Router */
