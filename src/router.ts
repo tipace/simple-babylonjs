@@ -71,6 +71,11 @@ const routes: RouteRecordRaw[] = [
     name: 'MovePOV',
     component: () => import('./views/MovePOV.vue'),
   },
+  {
+    path: '/WalkAroundVillage',
+    name: 'WalkAroundVillage',
+    component: () => import('./views/WalkAroundVillage.vue'),
+  },
 ];
 
 /** Vue Router */
