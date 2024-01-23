@@ -11,10 +11,9 @@ most of the comments are written by TONGYI Lingma or git copilot
 ## Assets
 
 doc https://github.com/BabylonJS/Assets
+
 json https://assets.babylonjs.com/generated/Assets.js
 
-## Category
+## references
 
-### (theFirstStep)[https://doc.babylonjs.com/journey/theFirstStep]
-
-- Yeti
+### [theFirstStep](https://doc.babylonjs.com/journey/theFirstStep）
