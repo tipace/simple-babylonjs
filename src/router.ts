@@ -76,6 +76,12 @@ const routes: RouteRecordRaw[] = [
     name: 'WalkAroundVillage',
     component: () => import('./views/WalkAroundVillage.vue'),
   },
+  {
+    path: '/BasicCollisions',
+    name: 'BasicCollisions',
+    component: () => import('./views/BasicCollisions.vue'),
+  },
+  // BasicCollisions
 ];
 
 /** Vue Router */
