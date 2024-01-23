@@ -66,6 +66,11 @@ const routes: RouteRecordRaw[] = [
     name: 'CarAnimation',
     component: () => import('./views/CarAnimation.vue'),
   },
+  {
+    path: '/MovePOV',
+    name: 'MovePOV',
+    component: () => import('./views/MovePOV.vue'),
+  },
 ];
 
 /** Vue Router */
