@@ -121,7 +121,12 @@ const routes: RouteRecordRaw[] = [
     name: 'NightToDay',
     component: () => import('./views/NightToDay.vue'),
   },
-  // NightToDay
+  {
+    path: '/Shadows',
+    name: 'Shadows',
+    component: () => import('./views/Shadows.vue'),
+  },
+  // Shadows
 ];
 
 /** Vue Router */
