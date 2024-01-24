@@ -126,7 +126,12 @@ const routes: RouteRecordRaw[] = [
     name: 'Shadows',
     component: () => import('./views/Shadows.vue'),
   },
-  // Shadows
+  {
+    path: '/LookAround',
+    name: 'LookAround',
+    component: () => import('./views/LookAround.vue'),
+  },
+  // LookAround
 ];
 
 /** Vue Router */
