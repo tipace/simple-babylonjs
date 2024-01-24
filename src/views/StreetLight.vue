@@ -4,8 +4,6 @@
 </template>
 
 <script setup lang="ts">
-// @ts-nocheck
-
 import { ref } from 'vue';
 import * as BABYLON from '@babylonjs/core/Legacy/legacy';
 

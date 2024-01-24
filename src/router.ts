@@ -111,6 +111,11 @@ const routes: RouteRecordRaw[] = [
     name: 'StreetLight',
     component: () => import('./views/StreetLight.vue'),
   },
+  {
+    path: '/StreetLight2',
+    name: 'StreetLight2',
+    component: () => import('./views/StreetLight2.vue'),
+  },
   // StreetLight
 ];
 
